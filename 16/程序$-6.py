@@ -12,6 +12,6 @@ y_output=graph.get_tensor_by_name('output:0')#最终输出结果的tensor
 
 with tf.Session() as sess:
     saver.restore(sess, '..\\model\\save_model.ckpt')#恢复权值
-    result = sess.run(y_result, feed_dict={input_placeholder: [1]})
+    result = sess.run(y_output, feed_dict={input_placeholder: [1]})
     print(result)
     print(sess.run(a_val))

@@ -1,6 +1,6 @@
 import tensorflow as tf
 import numpy as np
-import global_variable
+import save_and_restore.global_variable as global_variable
 from save_and_restore import lineRegulation_model as model
 
 train_x = np.random.rand(5)
@@ -32,6 +32,7 @@ if __name__ == "__main__":
     print(a_val.eval(sess) , "   ", b_val.eval(sess))
     print("-----------%d-----------"%epoch)
     print(a_val.op)
-    saver.save(sess,global_variable.save_path)
+    savePath = global_variable.save_path+"save_model"
+    saver.save(sess,savePath)
     print("model save finished")
     sess.close()

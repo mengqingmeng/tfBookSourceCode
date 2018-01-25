@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
-import global_variable
-import vgg16_weights_and_classe
+import save_and_restore.global_variable as global_variable
+#import vgg16_weights_and_classe
 
 class vgg16:
 
