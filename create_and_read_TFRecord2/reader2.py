@@ -14,7 +14,7 @@ def rebuild(dir):
                 image = cv2.imread(filepath)
                 dim = (227,227)
                 resized = cv2.resize(image,dim)
-                path = "/home/mqm/Workspace/DL/Datas/cat_vs_dog/data"
+                path = "E:\\Workspace\\DL\\DATAS\\cat_vs_dog\\train\\train"
                 cv2.imwrite(path,resized)
             except:
                 print(filepath)

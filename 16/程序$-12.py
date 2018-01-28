@@ -1,7 +1,7 @@
 import numpy as np
 import tensorflow as tf
-import global_variable
-import vgg16_weights_and_classes
+import save_and_restore.global_variable as global_variable
+import vgg16_weights_and_classe
 
 class vgg16:
     def __init__(self, imgs):
@@ -34,7 +34,8 @@ class vgg16:
         shape = input_data.get_shape().as_list()
         if len(shape) == 4:
             size = shape[-1] * shape[-2] * shape[-3]
-        else:size = shape[1]
+        else:
+            size = shape[1]
         input_data_flat = tf.reshape(input_data,[-1,size])
         with tf.variable_scope(name):
             weights = tf.get_variable(name="weights",shape=[size,out_channel],dtype=tf.float32,trainable = trainable)

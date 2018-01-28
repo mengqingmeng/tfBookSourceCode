@@ -2,7 +2,7 @@ import tensorflow as tf
 import MLP_model as model
 import tensorflow.contrib.slim as slim
 #定义的存储地址，读者可以自由定义sava_path作为模型的存储地址
-from global_variable import save_path as save_path 
+from save_and_restore.global_variable import save_path as save_path
 
 import shutil
 shutil.rmtree(save_path)

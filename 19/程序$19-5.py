@@ -7,7 +7,7 @@ def produce_batch(batch_size, noise=0.3):
     return [xs.astype(np.float32), ys.astype(np.float32)]
 
 if __name__ == "__main__" :
-    x_train, y_t rain = produce_batch(200)
+    x_train, y_train = produce_batch(200)
     x_test, y_test = produce_batch(200)
     plt.scatter(x_train,y_train,marker="8")
     plt.scatter(x_test, y_test,marker="*")

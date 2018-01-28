@@ -50,3 +50,4 @@ def get_batch(image_list, label_list,img_width,img_height,batch_size,capacity):
     label_batch = tf.reshape(label_batch,[batch_size])
 
     return image_batch,label_batch
+

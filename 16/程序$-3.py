@@ -1,5 +1,5 @@
 import tensorflow as tf
-import global_variable
+import save_and_restore.global_variable as global_variable
 from save_and_restore import lineRegulation_model as model
 
 model = model.LineRegModel()

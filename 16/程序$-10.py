@@ -1,6 +1,6 @@
 import tensorflow as tf
 import VGG16_model as model
-import global_variable
+import save_and_restore.global_variable as global_variable
 
 if __name__ == '__main__':
     imgs = tf.placeholder(tf.float32, [None, 224, 224, 3])
@@ -8,5 +8,5 @@ if __name__ == '__main__':
     prob = vgg.probs
     saver = vgg.saver()
     sess = tf.Session()
-    vgg.load_weights(".\\vgg16_weights_and_classe\\vgg16_weights.npz",sess)
+    vgg.load_weights("..\\vgg16_weights_and_classe\\vgg16_weights.npz",sess)
     saver.save(sess,global_variable.save_path)

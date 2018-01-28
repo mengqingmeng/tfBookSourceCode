@@ -1,7 +1,7 @@
 import tensorflow as tf
 import MLP_model as model
 import tensorflow.contrib.slim as slim
-from global_variable import save_path as save_path
+from save_and_restore.global_variable import save_path as save_path
 
 #import shutil
 #shutil.rmtree(save_path)
@@ -23,8 +23,7 @@ with g.as_default():
 #均方误差
     mean_squared_error = slim.losses.mean_squared_error(prediction,outputs,scope="mean_squared_error") 
     #绝对误差
-absolute_difference_loss =slim.losses.absolute_difference(prediction,outputs,scope="absolute_difference_loss")
-
+    absolute_difference_loss =slim.losses.absolute_difference(prediction,outputs,scope="absolute_difference_loss")
 
     #定义全部的损失函数
     total_loss = mean_squared_error + absolute_difference_loss
