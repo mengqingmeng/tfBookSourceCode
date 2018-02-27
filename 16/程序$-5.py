@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 import save_and_restore.global_variable as global_variable
-from save_and_restore import lineRegulation_model as model
+from save_and_restore import lineRegulation_model_v2 as model
 
 train_x = np.random.rand(5)
 train_y = 5 * train_x + 3.2   # y = 5 * x + 3
@@ -31,7 +31,7 @@ if __name__ == "__main__":
             flag = False
     print(a_val.eval(sess) , "   ", b_val.eval(sess))
     print("-----------%d-----------"%epoch)
-    print(a_val.op)
+    print(a_val.op)#打印节点内容
     savePath = global_variable.save_path+"save_model"
     saver.save(sess,savePath)
     print("model save finished")

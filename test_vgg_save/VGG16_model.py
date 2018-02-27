@@ -15,15 +15,30 @@ class vgg16:
         return tf.train.Saver()
 
     def maxpool(self,name,input_data,trainable=True):
+        """
+        池化
+        :param name:
+        :param input_data:
+        :param trainable:
+        :return:
+        """
         out = tf.nn.max_pool(input_data,[1,2,2,1],[1,2,2,1],padding="SAME",name=name)
         return out
 
     def conv(self,name, input_data, out_channel,trainable=True):
-        in_channel = input_data.get_shape()[-1]
+        """
+        定义卷基
+        :param name:   域名
+        :param input_data:输入数据
+        :param out_channel:输出通道数，就是卷积核的个数
+        :param trainable: 参数是否可训练
+        :return:
+        """
+        in_channel = input_data.get_shape()[-1] #图片通道数
         with tf.variable_scope(name):
-            kernel = tf.get_variable("weights", [3, 3, in_channel, out_channel], dtype=tf.float32,trainable=False)
-            biases = tf.get_variable("biases", [out_channel], dtype=tf.float32,trainable=False)
-            conv_res = tf.nn.conv2d(input_data, kernel, [1, 1, 1, 1], padding="SAME")
+            kernel = tf.get_variable("weights", [3, 3, in_channel, out_channel], dtype=tf.float32,trainable=False) #卷积核
+            biases = tf.get_variable("biases", [out_channel], dtype=tf.float32,trainable=False) #偏置
+            conv_res = tf.nn.conv2d(input_data, kernel, [1, 1, 1, 1], padding="SAME")   #卷积
             res = tf.nn.bias_add(conv_res, biases)
             out = tf.nn.relu(res, name=name)
         self.parameters += [kernel, biases]
@@ -45,7 +60,10 @@ class vgg16:
         return out
 
     def convlayers(self):
-        # zero-mean input
+        """
+        定义vgg模型，采用书中配置c
+        :return:
+        """
         #conv1
         self.conv1_1 = self.conv("conv1re_1",self.imgs,64,trainable=False)
         self.conv1_2 = self.conv("conv1_2",self.conv1_1,64,trainable=False)

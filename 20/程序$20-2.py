@@ -1,7 +1,7 @@
 from datasets import flowers
 import tensorflow as tf
 import matplotlib.pyplot as plt
-import global_variable
+from save_and_restore import global_variable
 import tensorflow.contrib.slim.python.slim as slim
 flowers_data_dir = global_variable.flowers_data_dir
 

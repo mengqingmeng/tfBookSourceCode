@@ -24,10 +24,10 @@ def get_file(file_dir):
     # shuffle
     temp = np.array([images, labels])
     temp = temp.transpose()
-    np.random.shuffle(temp)
+    np.random.shuffle(temp)#打乱
     image_list = list(temp[:, 0])
     label_list = list(temp[:, 1])
-    label_list = [int(float(i)) for i in label_list]
+    label_list = [int(float(i)) for i in label_list]#转换成int
 
     return image_list, label_list
 
@@ -51,3 +51,7 @@ def get_batch(image_list, label_list,img_width,img_height,batch_size,capacity):
 
     return image_batch,label_batch
 
+
+
+#img_list,label_list = get_file("E:\\Workspace\\DL\\DATAS\\cat_vs_dog\\train\\train")
+#get_batch(img_list,label_list,224,224,120,120)

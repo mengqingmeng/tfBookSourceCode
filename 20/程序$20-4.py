@@ -7,7 +7,7 @@ with tf.Graph().as_default():
     probabilities = tf.nn.softmax(probabilities.net)
 
     with tf.Session() as sess:
-sess.run(tf.global_variables_initializer())
+        sess.run(tf.global_variables_initializer())
         res = sess.run(probabilities )
 
         print('Res Shape:')

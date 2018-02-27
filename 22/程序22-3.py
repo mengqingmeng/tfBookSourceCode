@@ -1,14 +1,15 @@
 import tensorflow as tf
-from MNIST_data import input_data
+import tensorflow.examples.tutorials.mnist.input_data as input_data
+
 import tensorflow.contrib.slim as slim
 import model as model
 batch_size = 300
-import global_var
+from save_and_restore import global_variable
 
-logdir_path = global_var.logdir_path #存储地址，读者自行设定
+logdir_path = global_variable.logdir_path #存储地址，读者自行设定
 
 with tf.Graph().as_default():
-    mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+    mnist = input_data.read_data_sets("../MNIST_data/", one_hot=True)
 
     x_input = tf.placeholder(tf.float32,[None,28,28,1])
 
@@ -17,7 +18,7 @@ with tf.Graph().as_default():
     Dg = model.discriminate(Gz,reuse=True)   #判断图片的真假
 
     #对生成的图像是真为判定
-    d_loss_real = tf.reduce_mean(slim.losses.sigmoid_cross_entropy(multi_class_labels=tf.ones_like(Dx),logits=Dx ))
+    d_loss_real = tf.reduce_mean(slim.losses.sigmoid_cross_entropy(multi_class_labels=tf.ones_like(Dx),logits=Dx))
     #对生成的图像是假为判定
     d_loss_fake = tf.reduce_mean(slim.losses.sigmoid_cross_entropy(multi_class_labels=tf.zeros_like(Dg),logits=Dg))
     d_loss = d_loss_real + d_loss_fake
@@ -59,5 +60,5 @@ with tf.Graph().as_default():
             if (i + 1)% 3 == 0:
                 merged_summary = sess.run(merged_summary_op,feed_dict={x_input:batch_xs})
                 writer.add_summary(merged_summary, global_step=i)
-                saver.save(sess,"./discriminate_ckpt/GAN.ckpt")
+                saver.save(sess,"discriminate_ckpt/GAN.ckpt")
             print("-------model train epoch %d end---------"%i)

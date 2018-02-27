@@ -3,8 +3,8 @@ import tensorflow as tf
 
 weight1 = slim.model_variable('weight1',
                             shape=[2, 3],
-                            initializer=tf.truncated_normal_initializer(stddev=0.1),
-                            regularizer=slim.l2_regularizer(0.05))
+                            initializer=tf.truncated_normal_initializer(stddev=0.1), #截断正态分布随机数
+                            regularizer=slim.l2_regularizer(0.05))  #正则化处理
 
 weight2 = slim.model_variable('weight2',
                             shape=[2, 3],
@@ -20,4 +20,4 @@ with tf.Session() as sess:
     print("--------------------")
     print(sess.run(model_variables))
     print("--------------------")
-print(sess.run(slim.get_variables_by_suffix("weight1")))
+    print(sess.run(slim.get_variables_by_suffix("weight1")))

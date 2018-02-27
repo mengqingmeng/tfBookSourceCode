@@ -1,5 +1,6 @@
 import tensorflow as tf
 from datasets import dataset_utils	#这里请读者一定先下载相应的数据集处理文件夹并先导入到工程中
+from save_and_restore import global_variable
 
 url = "http://download.tensorflow.org/data/flowers.tar.gz"
 flowers_data_dir = global_variable.flowers_data_dir

@@ -37,7 +37,7 @@ def get_file(file_dir):
 
     for one_folder in temp:
         n_img = len(os.listdir(one_folder))
-        letter = one_folder.split('/')[-1]
+        letter = one_folder.split('\\')[-1]
         if letter =='cat':
             labels = np.append(labels,n_img*[0])
         else:
@@ -122,3 +122,6 @@ def one_hot(labels):
     onehot_labels = np.zeros((n_sample,n_class))
     onehot_labels[np.arange(n_sample),labels]=1
     return onehot_labels
+
+#img_list,label_list = get_file("E:\\Workspace\\DL\\DATAS\\cat_vs_dog\\train\\train")
+#get_batch(img_list,label_list,224,224,120,120)
